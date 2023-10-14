@@ -1,0 +1,36 @@
+trigger:
+  branches:
+    include:
+      - 'main'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    echo "Logging in to Azure Container Registry"
+    az acr login --name sermadregistry --username sermadregistry --password RlSzeKGcLJsv16ATAd1gqXvuqx7Py8vMeXGTXUqb+f+ACRAs/ohh
+
+    echo "Building DBT core image"
+    docker build -t sermadregistry.azurecr.io/DBT-core-image:latest .
+
+    echo "Pushing DBT core image to ACR"
+    docker push sermadregistry.azurecr.io/DBT-core-image:latest
+  displayName: 'Build and Push DBT Core Image'
+  workingDirectory: $(Build.SourcesDirectory)
+
+- script: |
+    echo "Logging in to Azure CLI using the service connection"
+    az login --service-principal -u 68780fde-5c40-463c-8d01-ebe6ade7486b -p hP38Q~e5ZB9l3ORIyTG2_JxqFjcuUyqjek4iiasH --tenant 36a13575-d209-4c82-a998-b67a504cb7cc
+
+    echo "Creating Azure Container Instance for DBT Core Image"
+    az container create --resource-group harpoon \
+                        --name DBT \
+                        --image sermadregistry.azurecr.io/DBT-core-image:latest \
+                        --cpu 1 --memory 1.5 \
+                        --restart-policy OnFailure \
+                        --registry-username sermadregistry \
+                        --registry-password RlSzeKGcLJsv16ATAd1gqXvuqx7Py8vMeXGTXUqb+f+ACRAs/ohh \
+                        --log-analytics-workspace bb67b212-6aa1-4889-acf6-8335dd3673e5 \
+                        --log-analytics-workspace-key csi7GWdlTQs6wYaK2NGj1Anv57HmVn0zM93HuW4zEr8EwN+KhjBV8365EpQZ2x01yerFNJQ+SZ82JZ8V1xT/Lw==
+  displayName: 'Create DBT Core Container'
