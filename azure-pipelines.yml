@@ -12,10 +12,10 @@ steps:
     az acr login --name sermadregistry --username sermadregistry --password RlSzeKGcLJsv16ATAd1gqXvuqx7Py8vMeXGTXUqb+f+ACRAs/ohh
 
     echo "Building DBT core image"
-    docker build -t sermadregistry.azurecr.io/DBT-core-image:latest .
+    docker build -t sermadregistry.azurecr.io/dbt-core-image:latest .
 
     echo "Pushing DBT core image to ACR"
-    docker push sermadregistry.azurecr.io/DBT-core-image:latest
+    docker push sermadregistry.azurecr.io/dbt-core-image:latest
   displayName: 'Build and Push DBT Core Image'
   workingDirectory: $(Build.SourcesDirectory)
 
@@ -26,7 +26,7 @@ steps:
     echo "Creating Azure Container Instance for DBT Core Image"
     az container create --resource-group harpoon \
                         --name DBT \
-                        --image sermadregistry.azurecr.io/DBT-core-image:latest \
+                        --image sermadregistry.azurecr.io/dbt-core-image:latest \
                         --cpu 1 --memory 1.5 \
                         --restart-policy OnFailure \
                         --registry-username sermadregistry \
