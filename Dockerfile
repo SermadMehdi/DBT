@@ -27,4 +27,4 @@ ENV PYTHONIOENCODING=utf-8
 ENV LANG=C.UTF-8
 ENV DOCKER_CLI_HINTS=false
 ENV KV_NAME="daprod-keyvault"
-CMD python utilities/set_env_vars_sn.py; source secrets.sh; rm secrets*; git clone https://${GIT_PAT}@dev.azure.com/AirTrunk/AirTrunk%20Azure%20Repo%20%28Thoughtworks%29/_git/airtrunk_dbt; mkdir airtrunk_dbt/utilities; mv utilities/* airtrunk_dbt/utilities/; cd airtrunk_dbt/service_now; git pull; dbt build --target prod| tee dbt_log.txt; dbt docs generate --target prod --no-compile; python seed_run_result.py; python upload_artefacts.py; cd ../dbt_log; dbt build; echo 'Completed'
+CMD git clone https://${GIT_PAT}@dev.azure.com/AirTrunk/AirTrunk%20Azure%20Repo%20%28Thoughtworks%29/_git/airtrunk_dbt; mkdir airtrunk_dbt/utilities; mv utilities/* airtrunk_dbt/utilities/; cd airtrunk_dbt/service_now; git pull; dbt build --target prod| tee dbt_log.txt; dbt docs generate --target prod --no-compile; python seed_run_result.py; python upload_artefacts.py; cd ../dbt_log; dbt build; echo 'Completed'
