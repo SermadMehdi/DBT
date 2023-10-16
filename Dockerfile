@@ -22,14 +22,8 @@ RUN pip install -q --no-cache-dir azure-identity
 RUN pip install -q --no-cache-dir azure-keyvault-secrets
 RUN pip install -q --no-cache-dir pandas
 COPY  . /
-ARG KV_NAME
-ENV PYTHONIOENCODING=utf-8
-ENV LANG=C.UTF-8
-ENV DOCKER_CLI_HINTS=false
-ENV KV_NAME="daprod-keyvault"
 CMD git clone https://github.com/SermadMehdi/DBT.git; \
-    cd dbt-workspace-main/service_now; \
-    git pull; \
+    cd DBT/dbt-workspace-main/service_now; \
     dbt run; \
     echo 'Completed'
 
