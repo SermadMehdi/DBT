@@ -30,9 +30,6 @@ ENV KV_NAME="daprod-keyvault"
 CMD git clone https://github.com/SermadMehdi/DBT.git; \
     cd DBT/dbt-workspace-main/service_now/; \
     git pull; \
-    dbt build --target prod | tee dbt_log.txt; \
-    dbt docs generate --target prod --no-compile; \
-    cd ../logs; \
-    dbt build; \
+    dbt run; \
     echo 'Completed'
 
