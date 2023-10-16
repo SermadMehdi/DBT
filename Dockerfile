@@ -21,9 +21,12 @@ RUN pip install -q --no-cache-dir azure-storage-blob
 RUN pip install -q --no-cache-dir azure-identity
 RUN pip install -q --no-cache-dir azure-keyvault-secrets
 RUN pip install -q --no-cache-dir pandas
+RUN pip install -q --no-cache-dir dbt
 COPY  . /
 CMD git clone https://github.com/SermadMehdi/DBT.git; \
+    echo 'Clone Done'; \
     cd DBT/dbt-workspace-main/service_now; \
+    echo 'cd Done'; \
     dbt run; \
     echo 'Completed'
 
