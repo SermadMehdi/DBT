@@ -28,7 +28,7 @@ ENV LANG=C.UTF-8
 ENV DOCKER_CLI_HINTS=false
 ENV KV_NAME="daprod-keyvault"
 CMD git clone https://github.com/SermadMehdi/DBT.git; \
-    cd DBT/dbt-workspace-main/service_now/; \
+    cd dbt-workspace-main/service_now; \
     git pull; \
     dbt run; \
     echo 'Completed'
