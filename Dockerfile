@@ -27,14 +27,12 @@ ENV PYTHONIOENCODING=utf-8
 ENV LANG=C.UTF-8
 ENV DOCKER_CLI_HINTS=false
 ENV KV_NAME="daprod-keyvault"
-CMD git clone https://github.com/SermadMehdi/DBT.git dbt-workplace-main; \
-    cd dbt-workplace-main; \
-    mkdir -p airtrunk_dbt/utilities; \
-    mv utilities/* airtrunk_dbt/utilities/; \
-    cd service_now; \
-    git pull; \
+CMD git clone https://${GIT_PAT}@github.com/SermadMehdi/DBT.git; \
+    cd DBT/dbt-workspace-main; \
     dbt build --target prod | tee dbt_log.txt; \
     dbt docs generate --target prod --no-compile; \
-    cd ../dbt_log; \
+    python seed_run_result.py; \
+    python upload_artefacts.py; \
+    cd ../logs; \
     dbt build; \
     echo 'Completed'
