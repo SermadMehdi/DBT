@@ -27,6 +27,8 @@ CMD git clone https://github.com/SermadMehdi/DBT.git; \
     echo 'Clone Done'; \
     cd DBT/dbt-workspace-main/service_now; \
     echo 'cd Done'; \
+    dbt build; \
+    echo 'done building'; \
     dbt run; \
     echo 'Completed'
 
