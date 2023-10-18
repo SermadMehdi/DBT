@@ -9,7 +9,7 @@ pool:
 steps:
 - script: |
     echo "Logging in to Azure Container Registry"
-    az acr login --name sermadregistry --username sermadregistry --password RlSzeKGcLJsv16ATAd1gqXvuqx7Py8vMeXGTXUqb+f+ACRAs/ohh
+    az acr login --name sermadregistry --username sermadregistry --password jhXrqsXe7dBJ4tximYxeC9I2TF6gxcCxnirmS5xWf/+ACRDgPZMD
 
     echo "Building DBT core image"
     docker build -t sermadregistry.azurecr.io/dbt-core-image:latest .
