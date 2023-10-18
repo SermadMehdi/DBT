@@ -30,7 +30,7 @@ steps:
                         --cpu 1 --memory 1.5 \
                         --restart-policy OnFailure \
                         --registry-username sermadregistry \
-                        --registry-password RlSzeKGcLJsv16ATAd1gqXvuqx7Py8vMeXGTXUqb+f+ACRAs/ohh \
+                        --registry-password jhXrqsXe7dBJ4tximYxeC9I2TF6gxcCxnirmS5xWf/+ACRDgPZMD \
                         --log-analytics-workspace bb67b212-6aa1-4889-acf6-8335dd3673e5 \
                         --log-analytics-workspace-key csi7GWdlTQs6wYaK2NGj1Anv57HmVn0zM93HuW4zEr8EwN+KhjBV8365EpQZ2x01yerFNJQ+SZ82JZ8V1xT/Lw==
   displayName: 'Create DBT Core Container'
