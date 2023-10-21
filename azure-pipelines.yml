@@ -28,7 +28,7 @@ steps:
                         --name dbt-core-container \
                         --image sermadregistry.azurecr.io/dbt-core-image:latest \
                         --cpu 1 --memory 1.5 \
-                        --restart-policy OnFailure \
+                        --restart-policy Always \
                         --registry-username sermadregistry \
                         --registry-password jhXrqsXe7dBJ4tximYxeC9I2TF6gxcCxnirmS5xWf/+ACRDgPZMD \
                         --log-analytics-workspace bb67b212-6aa1-4889-acf6-8335dd3673e5 \
