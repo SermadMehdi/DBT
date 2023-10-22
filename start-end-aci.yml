@@ -21,7 +21,7 @@ stages:
           az container start --name dbt-core-container --resource-group harpoon
           
           # Add a delay between start and stop if needed
-          sleep 55  # Sleep for 60 seconds (adjust as needed)
+          sleep 30  # Sleep for 60 seconds (adjust as needed)
           
           # Use Azure CLI to stop the Azure Container Instance
           az container stop --name dbt-core-container --resource-group harpoon
