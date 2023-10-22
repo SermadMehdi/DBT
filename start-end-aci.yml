@@ -12,8 +12,8 @@ stages:
   - job: LoopJob
     steps:
     - script: |
-        echo "Logging in to Azure Container Registry"
-        az acr login --name sermadregistry --username sermadregistry --password jhXrqsXe7dBJ4tximYxeC9I2TF6gxcCxnirmS5xWf/+ACRDgPZMD
+        echo "Logging in to Azure CLI using the service connection"
+        az login --service-principal -u 68780fde-5c40-463c-8d01-ebe6ade7486b -p hP38Q~e5ZB9l3ORIyTG2_JxqFjcuUyqjek4iiasH --tenant 36a13575-d209-4c82-a998-b67a504cb7cc
 
         for i in {1..3}  # Loop 3 times (change the number as needed)
         do
