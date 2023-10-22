@@ -1,0 +1,25 @@
+trigger:
+- '*'
+
+pr: none
+
+stages:
+- stage: StartAndStopLoop
+  jobs:
+  - job: LoopJob
+    steps:
+    - script: |
+        for i in {1..3}  # Loop 10 times (change the number as needed)
+        do
+          # Use Azure CLI or Azure PowerShell to start the Azure Container Instance
+          # Replace <ResourceGroupName> and <ContainerGroupName> with your values
+          az container start --name dbt-core-container --resource-group harpoon
+          
+          # Add a delay between start and stop if needed
+          sleep 60  # Sleep for 60 seconds (adjust as needed)
+          
+          # Use Azure CLI or Azure PowerShell to stop the Azure Container Instance
+          # Replace <ResourceGroupName> and <ContainerGroupName> with your values
+          az container stop --name dbt-core-container --resource-group harpoon
+        done
+      displayName: 'Loop: Start and Stop Container'
