@@ -15,13 +15,13 @@ stages:
         echo "Logging in to Azure CLI using the service connection"
         az login --service-principal -u 68780fde-5c40-463c-8d01-ebe6ade7486b -p hP38Q~e5ZB9l3ORIyTG2_JxqFjcuUyqjek4iiasH --tenant 36a13575-d209-4c82-a998-b67a504cb7cc
 
-        for i in {1..3}  # Loop 3 times (change the number as needed)
+        for i in {1..400}  # Loop 3 times (change the number as needed)
         do
           # Use Azure CLI to start the Azure Container Instance
           az container start --name dbt-core-container --resource-group harpoon
           
           # Add a delay between start and stop if needed
-          sleep 60  # Sleep for 60 seconds (adjust as needed)
+          sleep 55  # Sleep for 60 seconds (adjust as needed)
           
           # Use Azure CLI to stop the Azure Container Instance
           az container stop --name dbt-core-container --resource-group harpoon
